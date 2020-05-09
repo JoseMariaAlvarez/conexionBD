@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 5.3//EN"  
+ "http://www.hibernate.org/dtd/hibernate-mapping-5.3.dtd">  
+  
+ <hibernate-mapping>  
+  <class name="iis.uma.es.Jugador" table="JUGADOR">
+        <id name="identificador" type="int" column="identificador">
+            <generator class="increment"/>
+        </id>
+        <property name="nombre">
+            <column name="nombre"/>
+        </property>
+        <property name="edad">
+            <column name="edad"/>
+        </property>
+        <property name="idEquipo">
+            <column name="idEquipo"/>
+        </property>
+    </class>
+</hibernate-mapping>

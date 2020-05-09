@@ -1,0 +1,11 @@
+iis\uma\es\Jugador.class
+iis\uma\es\InterfazHibernateBaseDatos.class
+iis\uma\es\BorrarJugadorPanel.class
+iis\uma\es\Equipo.class
+iis\uma\es\ConexionConBasedeDatos.class
+iis\uma\es\InterfazJDBCBaseDatos.class
+iis\uma\es\CntrlNuevoJugador.class
+iis\uma\es\IncluirJugadorPanel.class
+iis\uma\es\NuevoJugadorPanel.class
+iis\uma\es\CntrlBorrarJugador.class
+iis\uma\es\CntrlIncluirJugador.class
