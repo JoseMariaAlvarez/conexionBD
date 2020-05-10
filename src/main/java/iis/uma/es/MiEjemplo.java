@@ -14,8 +14,8 @@ public class MiEjemplo {
 
 		ConexionConBasedeDatos accesoBD;
 
-		//		accesoBD = ConexionBaseDatosJDBC.getInstance();
-		accesoBD = ConexionBaseDatosHibernate.getInstance();
+		accesoBD = ConexionBaseDatosJDBC.getInstance();
+		//		accesoBD = ConexionBaseDatosHibernate.getInstance();
 		List<Equipo> listEquipos = accesoBD.listaEquipos();
 		List<Jugador> listJugadores = accesoBD.listaJugadores();
 		ListIterator<Jugador> it = listJugadores.listIterator();

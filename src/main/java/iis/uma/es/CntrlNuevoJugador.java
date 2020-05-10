@@ -22,7 +22,7 @@ public class CntrlNuevoJugador implements ActionListener{
 		// El 0 como identificador es provisional hasta que se inserte en la base de datos.
 		Jugador j = new Jugador(0, njPanel.getNombreTf().getText(), 
 				Integer.parseInt(njPanel.getEdadTf().getText()), 
-				0);
+				null);
 		ljugadores.add(j);
 		int jugadorId = conexionBD.inscribirNuevoJugador(j);
 		j.setIdentificador(jugadorId);

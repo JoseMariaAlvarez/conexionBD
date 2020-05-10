@@ -92,10 +92,10 @@ public class ConexionBaseDatosHibernate extends ConexionConBasedeDatos {
 
 		session.beginTransaction();
 
-		Integer id = (Integer) session.save(j);
+		session.saveOrUpdate(j);
 		session.getTransaction().commit();
 		session.close();
-		return id;
+		return 0;
 	}
 
 	// Equipo e = null para quitarlo de un equipo
@@ -103,7 +103,7 @@ public class ConexionBaseDatosHibernate extends ConexionConBasedeDatos {
 		Session session = getSessionFactory().openSession();
 
 		session.beginTransaction();
-        session.update(j);
+        session.saveOrUpdate(j);
 		session.getTransaction().commit();
 		session.close();
 //		return id;
