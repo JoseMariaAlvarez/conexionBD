@@ -99,24 +99,24 @@ public class ConexionBaseDatosHibernate extends ConexionConBasedeDatos {
 	}
 
 	// Equipo e = null para quitarlo de un equipo
-	public void actualizarJugador(Jugador j) {
+	public int actualizarJugador(Jugador j) {
 		Session session = getSessionFactory().openSession();
 
 		session.beginTransaction();
         session.saveOrUpdate(j);
 		session.getTransaction().commit();
 		session.close();
-//		return id;
+		return 0;
 	}
 
 	@Override
-	public void borrarJugador(Jugador j) {
+	public int borrarJugador(Jugador j) {
 		Session session = getSessionFactory().openSession();
 
 		session.beginTransaction();
         session.delete(j);
 		session.getTransaction().commit();
 		session.close();
-		
+		return 0;
 	}
 }

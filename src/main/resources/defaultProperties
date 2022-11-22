@@ -1,0 +1,7 @@
+JDBC_DRIVER = com.mysql.jdbc.Driver
+DB_URL = jdbc:mysql://database-pevau.cobadwnzalab.eu-central-1.rds.amazonaws.com
+DB_SCHEMA = pruebaLigadb
+TABLE_EQUIPO = Equipo
+TABLE_JUGADOR = Jugador
+USER = usuarioPrueba
+PASS = pruebausuario

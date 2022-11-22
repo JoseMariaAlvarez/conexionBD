@@ -32,7 +32,7 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 
 	public List<Equipo> listaEquipos() {
 		ArrayList<Equipo> lEquipos = new ArrayList<>();
-		String selectQueryBody = "SELECT * FROM EQUIPO";
+		String selectQueryBody = "SELECT * FROM " + TABLE_EQUIPO;
 		Statement querySt;
 		try {
 			querySt = conn.createStatement();
@@ -65,7 +65,7 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 
 	public List<Jugador> listaJugadores() {
 		ArrayList<Jugador> lEquipos = new ArrayList<>();
-		String selectQueryBody = "SELECT * FROM JUGADOR";
+		String selectQueryBody = "SELECT * FROM " + TABLE_JUGADOR;
 		Statement querySt;
 		try {
 			querySt = conn.createStatement();
@@ -92,8 +92,8 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 	}
 
 	public List<Jugador> listaJugadoresDeUnEquipo(int idEq) {
-		ArrayList<Jugador> lEquipos = new ArrayList<>();
-		String selectQueryBody = "SELECT * FROM JUGADOR WHERE idEquipo=?";
+		ArrayList<Jugador> lJugadores = new ArrayList<>();
+		String selectQueryBody = "SELECT * FROM " + TABLE_JUGADOR + " WHERE idEquipo=?";
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(selectQueryBody);
 			preparedStatement.setInt(1, idEq);
@@ -105,7 +105,7 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 					String name = rs.getString(2);
 					int edad = rs.getInt(3);
 					int idEquipo = rs.getInt(4);
-					lEquipos.add(new Jugador(id, name, edad, idEquipo));
+					lJugadores.add(new Jugador(id, name, edad, idEquipo));
 				}
 			}
 
@@ -113,12 +113,12 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return lEquipos;
+		return lJugadores;
 	}
 
 	public int inscribirNuevoJugador(Jugador j) {
 		int jugadorId = 0;
-		String insertBody = "INSERT INTO JUGADOR (nombre, edad, idEquipo ) VALUES (?, ?, null)";
+		String insertBody = "INSERT INTO " + TABLE_JUGADOR + "(nombre, edad, idEquipo ) VALUES (?, ?, null)";
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(insertBody,
 					PreparedStatement.RETURN_GENERATED_KEYS);
@@ -137,11 +137,12 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 	}
 
 	// Equipo e = null para quitarlo de un equipo
-	public void actualizarJugador(Jugador j) {
+	public int actualizarJugador(Jugador j) {
 		PreparedStatement preparedStatement = null;
 		String updateBody = null;
+		int res = 0;
 		try {
-			updateBody = "UPDATE JUGADOR SET idEquipo = ? WHERE (identificador = ?)";
+			updateBody = "UPDATE " + TABLE_JUGADOR + " SET idEquipo = null WHERE (identificador = ?)";
 			preparedStatement = conn.prepareStatement(updateBody);
 			if (j.getIdEquipo() == null) {
 				preparedStatement.setNull(1, java.sql.Types.INTEGER);
@@ -149,27 +150,27 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 				preparedStatement.setInt(1, j.getIdEquipo());
 			}
 			preparedStatement.setInt(2, j.getIdentificador());
-			int res = preparedStatement.executeUpdate();
+			res = preparedStatement.executeUpdate();
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}
-
+		return res;
 	}
 
 	@Override
-	public void borrarJugador(Jugador j) {
-		int jugadorId = 0;
-		String deleteBody = "DELETE FROM JUGADOR WHERE (identificador = ?)";
+	public int borrarJugador(Jugador j) {
+		String deleteBody = "DELETE FROM " + TABLE_JUGADOR + " WHERE (identificador = ?)";
+		int res = 0;
 		try {
 			PreparedStatement preparedStatement = conn.prepareStatement(deleteBody);
 			preparedStatement.setInt(1, j.getIdentificador());
-			int res = preparedStatement.executeUpdate();
+			res = preparedStatement.executeUpdate();
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}
-		
+		return res;
 	}
 
 }
