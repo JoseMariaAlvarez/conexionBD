@@ -2,9 +2,6 @@ package iis.uma.es;
 
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -17,6 +14,8 @@ import javax.swing.JScrollPane;
 
 public class InterfazIncluirJugador extends JPanel {
 
+	private static final long serialVersionUID = 1L;
+	
 	public static String CB_SELECCION_EQUIPO_ACTION_COMMAND = "CB_SELECCION_EQUIPO_ACTION_COMMAND";
 	public static String BT_ADSCRIBIR_JUGADOR_ACTION_COMMAND = "BT_ADSCRIBIR_JUGADOR_ACTION_COMMAND";
 	public static String BT_DARDEBAJA_JUGADOR_ACTION_COMMAND = "BT_DARDEBAJA_JUGADOR_ACTION_COMMAND";
