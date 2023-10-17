@@ -8,6 +8,8 @@ import javax.swing.JTabbedPane;
 
 public class InterfazPanelContenido extends JTabbedPane {
 
+	private static final long serialVersionUID = 1L;
+	
 	InterfazNuevoJugador panel1;
 	InterfazBorrarJugador panel2;
 	InterfazIncluirJugador panel3;

@@ -124,7 +124,7 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 					PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, j.getNombre());
 			preparedStatement.setInt(2, j.getEdad());
-			int res = preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate();
 			ResultSet rs = preparedStatement.getGeneratedKeys();
 			while (rs.next()) {
 				jugadorId = rs.getInt(1);

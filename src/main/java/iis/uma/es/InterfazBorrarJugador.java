@@ -2,20 +2,21 @@ package iis.uma.es;
 
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
+//import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 public class InterfazBorrarJugador extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	public static String BT_BORRAR_JUGADOR_ACTION_COMMAND = "BT_BORRAR_JUGADOR_ACTION_COMMAND";
 	
