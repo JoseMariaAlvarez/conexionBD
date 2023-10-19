@@ -1,5 +1,5 @@
 JDBC_DRIVER = com.mysql.jdbc.Driver
-DB_URL = jdbc:mysql://database-pevau.cobadwnzalab.eu-central-1.rds.amazonaws.com
+DB_URL = jdbc:mysql://127.0.0.1
 DB_SCHEMA = pruebaLigadb
 TABLE_EQUIPO = Equipo
 TABLE_JUGADOR = Jugador

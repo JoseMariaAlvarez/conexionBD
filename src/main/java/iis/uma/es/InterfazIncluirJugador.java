@@ -64,7 +64,7 @@ public class InterfazIncluirJugador extends JPanel {
 		lmJugadoresSinEquipo = new DefaultListModel<>();
 		lstJugadoresSinEquipo = new JList<Jugador>(lmJugadoresSinEquipo);
 		for (Jugador j : jugadores) {
-			if (j.idEquipo == null) {
+			if (j.getIdEquipo() == null) {
 				lmJugadoresSinEquipo.addElement(j);
 			}
 		}

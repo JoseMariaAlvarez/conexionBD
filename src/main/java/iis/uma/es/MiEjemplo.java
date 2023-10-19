@@ -11,8 +11,8 @@ public class MiEjemplo {
 
 		ConexionConBasedeDatos accesoBD;
 
-		accesoBD = ConexionBaseDatosJDBC.getInstance();
-		//		accesoBD = ConexionBaseDatosHibernate.getInstance();
+		//		accesoBD = ConexionBaseDatosJDBC.getInstance();
+		accesoBD = ConexionBaseDatosHibernate.getInstance();
 		List<Equipo> listEquipos = accesoBD.listaEquipos();
 		List<Jugador> listJugadores = accesoBD.listaJugadores();
 		ListIterator<Jugador> it = listJugadores.listIterator();
@@ -22,10 +22,10 @@ public class MiEjemplo {
 			}
 		}
 		for (Jugador jgd : listJugadores) {
-			System.out.print(jgd.identificador);
-			System.out.print(" " + jgd.nombre);
-			System.out.print(" " + jgd.edad);
-			System.out.println(" " + jgd.idEquipo);
+			System.out.print(jgd.getIdentificador());
+			System.out.print(" " + jgd.getNombre());
+			System.out.print(" " + jgd.getEdad());
+			System.out.println(" " + jgd.getIdEquipo());
 		}
 		// Create and set up the window.
 		JFrame frame = new JFrame("HelloWorldJBDCHibernate");

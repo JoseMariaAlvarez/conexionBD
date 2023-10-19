@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public abstract class ConexionConBasedeDatos {
 	protected static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	protected static String DB_URL = "jdbc:mysql://database-pevau.cobadwnzalab.eu-central-1.rds.amazonaws.com";
+	protected static String DB_URL = "jdbc:mysql://127.0.0.1";
 	protected static String DB_SCHEMA = "pruebaLigadb";
 	protected static String TABLE_EQUIPO = "Equipo";
 	protected static String TABLE_JUGADOR = "Jugador";

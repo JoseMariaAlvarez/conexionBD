@@ -2,10 +2,10 @@ package iis.uma.es;
 
 
 public class Jugador {
-	int identificador;
-	String nombre;
-	int edad;
-	Integer idEquipo;
+	private int identificador;
+	private String nombre;
+	private int edad;
+	private Integer idEquipo;
 
 	public Jugador() {
 		identificador = 0;

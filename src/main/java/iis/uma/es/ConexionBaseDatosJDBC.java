@@ -44,11 +44,11 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 					String name = rs.getString(2);
 					Equipo eq = new Equipo(id, name);
 					lEquipos.add(eq);
-					System.out.println(eq.identificador + " " + eq.nombre);
-					List<Jugador> plantillaEquipo = listaJugadoresDeUnEquipo(eq.identificador);
+					System.out.println(eq.getIdentificador() + " " + eq.getNombre());
+					List<Jugador> plantillaEquipo = listaJugadoresDeUnEquipo(eq.getIdentificador());
 					for (Jugador jgd : plantillaEquipo) {
-						System.out.println(jgd.identificador + " " + jgd.nombre + " " + 
-					                     jgd.edad + " " + jgd.idEquipo);
+						System.out.println(jgd.getIdentificador() + " " + jgd.getNombre() + " " + 
+					                     jgd.getEdad() + " " + jgd.getIdEquipo());
 						eq.inscribirJugador(jgd);
 					}
 

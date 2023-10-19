@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Equipo {
-	int identificador;
-	String nombre;
-	List<Jugador> plantilla;
+	private int identificador;
+	private String nombre;
+	private List<Jugador> plantilla;
 
 	public Equipo() {
 		identificador = 0;
