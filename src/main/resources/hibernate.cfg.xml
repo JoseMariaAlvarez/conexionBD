@@ -15,8 +15,7 @@
       <property name="format_sql">true</property>
       <property name="hbm2ddl.auto">none</property>
       <!-- List of XML mapping files -->
-      <mapping resource="Equipo.hbm.xml"/>
-      <mapping resource="Jugador.hbm.xml"/>
-
+	  <mapping class="iis.uma.es.Equipo"/>
+	  <mapping class="iis.uma.es.Jugador"/>
    </session-factory>
 </hibernate-configuration>

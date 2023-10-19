@@ -1,7 +1,16 @@
 package iis.uma.es;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity  
+@Table(name= "EQUIPO")
 public class Jugador {
+	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int identificador;
 	private String nombre;
 	private int edad;

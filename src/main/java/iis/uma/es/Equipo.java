@@ -3,9 +3,28 @@ package iis.uma.es;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
+import javax.persistence.Table;
+
+@Entity  
+@Table(name= "Equipo")
 public class Equipo {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int identificador;
 	private String nombre;
+	
+	@OneToMany(cascade = CascadeType.ALL)  
+	@JoinColumn(name="qid")  
+	@OrderColumn(name="type")
 	private List<Jugador> plantilla;
 
 	public Equipo() {
