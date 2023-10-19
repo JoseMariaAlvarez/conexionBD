@@ -80,7 +80,7 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 					if (rs.wasNull()) {
 						idEquipo = null;
 					}
-					lEquipos.add(new Jugador(id, name, edad, idEquipo));
+					lEquipos.add(new Jugador(id, name, edad, idEquipo, 0));
 				}
 			}
 
@@ -105,7 +105,7 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 					String name = rs.getString(2);
 					int edad = rs.getInt(3);
 					int idEquipo = rs.getInt(4);
-					lJugadores.add(new Jugador(id, name, edad, idEquipo));
+					lJugadores.add(new Jugador(id, name, edad, idEquipo, 0));
 				}
 			}
 

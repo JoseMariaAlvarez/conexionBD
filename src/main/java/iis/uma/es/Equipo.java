@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,18 +14,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity  
 @Table(name= "Equipo")
 public class Equipo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GeneratedValue(strategy= GenerationType.AUTO,generator="native")
+	@GenericGenerator(name = "native",strategy = "native")
 	private int identificador;
 	private String nombre;
 	
-	@OneToMany(cascade = CascadeType.ALL)  
-	@JoinColumn(name="qid")  
-	@OrderColumn(name="type")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="idEquipo")  
+	@OrderColumn(name="posIndex")
 	private List<Jugador> plantilla;
 
 	public Equipo() {
