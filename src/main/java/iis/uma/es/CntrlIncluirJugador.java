@@ -29,6 +29,7 @@ public class CntrlIncluirJugador implements ActionListener {
 				j.setIdEquipo(equipoSeleccionado.getIdentificador());
 				jugadoresDisponibles.remove(j);
 				equipoSeleccionado.inscribirJugador(j);
+				conexionBD.actualizarEquipo(equipoSeleccionado);
 				conexionBD.actualizarJugador(j);
 			}
 			ijPanel.actualizarListaJugadoresEquipoSeleccionado(equipoSeleccionado.getPlantilla());
@@ -38,6 +39,7 @@ public class CntrlIncluirJugador implements ActionListener {
 				j.setIdEquipo(null);
 				equipoSeleccionado.dardeBajaJugador(j);
 				jugadoresDisponibles.add(j);
+				conexionBD.actualizarEquipo(equipoSeleccionado);
 				conexionBD.actualizarJugador(j);
 			}
 			ijPanel.actualizarListaJugadoresEquipoSeleccionado(equipoSeleccionado.getPlantilla());

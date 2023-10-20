@@ -60,6 +60,7 @@ public abstract class ConexionConBasedeDatos {
 		public abstract List<Jugador> listaJugadores();
 		public abstract List<Jugador> listaJugadoresDeUnEquipo(int idEq);
 		public abstract int inscribirNuevoJugador(Jugador j);
+		public abstract int actualizarEquipo(Equipo e);
 		// Equipo e = null para quitarlo de un equipo
 		public abstract int actualizarJugador(Jugador j);
 		public abstract int borrarJugador(Jugador j);

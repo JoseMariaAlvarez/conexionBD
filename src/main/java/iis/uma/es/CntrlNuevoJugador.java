@@ -25,6 +25,8 @@ public class CntrlNuevoJugador implements ActionListener{
 		ljugadores.add(j);
 		int jugadorId = conexionBD.inscribirNuevoJugador(j);
 		j.setIdentificador(jugadorId);
+		njPanel.getNombreTf().setText("");
+		njPanel.getEdadTf().setText("");
 		System.out.println("nuevo jugador añadido");
 		
 	}
