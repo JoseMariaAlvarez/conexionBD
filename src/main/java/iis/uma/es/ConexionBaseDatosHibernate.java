@@ -4,20 +4,20 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 public class ConexionBaseDatosHibernate extends ConexionConBasedeDatos {
 	private static ConexionBaseDatosHibernate instanciaInterfaz = null;
-	private Session session = null;
+	private EntityManager entityManager = null;
 
 	public ConexionBaseDatosHibernate() {
 		try {
-			// Create the SessionFactory from hibernate.cfg.xml
-			session = new Configuration().configure().buildSessionFactory().openSession();
+			// Create the SessionFactory from persistence.xml
+			EntityManagerFactory entityManagerF = Persistence.createEntityManagerFactory("iis.uma.es.equipos_jugadores");
+			entityManager = entityManagerF.createEntityManager();
 		} catch (Throwable ex) {
 			// Make sure you log the exception, as it might be swallowed
 			System.err.println("SessionFactory creation failed." + ex);
@@ -32,29 +32,29 @@ public class ConexionBaseDatosHibernate extends ConexionConBasedeDatos {
 		return instanciaInterfaz;
 	}
 
-	public Session getSession() {
-		return session;
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 	public void shutdown() {
 		// Close caches and connection pools
-		getSession().close();
+		getEntityManager().close();
 		System.out.println("Session closed.");
 	}
 
 	@Override
 	public List<Equipo> listaEquipos() {
 
-		Transaction t = session.beginTransaction();
+		entityManager.getTransaction().begin();
 //		List<Equipo> result = session.createQuery("from Equipo", Equipo.class).getResultList();
-		CriteriaBuilder crBuilder = session.getCriteriaBuilder();
+		CriteriaBuilder crBuilder = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Equipo> crQuery = crBuilder.createQuery(Equipo.class);
 		crQuery.from(Equipo.class);
-		List<Equipo> result = session.createQuery(crQuery).getResultList();
+		List<Equipo> result = entityManager.createQuery(crQuery).getResultList();
  		for (Equipo e : (List<Equipo>) result) {
 			System.out.println("E (" + e.getNombre() + ")");
 		}
-		t.commit();
+		entityManager.getTransaction().commit();
 
 		return result;
 	}
@@ -62,12 +62,12 @@ public class ConexionBaseDatosHibernate extends ConexionConBasedeDatos {
 	@Override
 	public List<Jugador> listaJugadores() {
 
-		Transaction t = session.beginTransaction();
-		List<Jugador> result = session.createQuery("from Jugador", Jugador.class).getResultList();
+		entityManager.getTransaction().begin();
+		List<Jugador> result = entityManager.createQuery("from Jugador", Jugador.class).getResultList();
 		for (Jugador j : (List<Jugador>) result) {
 			System.out.println("Jugador (" + j.getNombre() + ") : " + j.getEdad());
 		}
-		t.commit();
+		entityManager.getTransaction().commit();
 
 		return result;
 	}
@@ -75,50 +75,49 @@ public class ConexionBaseDatosHibernate extends ConexionConBasedeDatos {
 	@Override
 	public List<Jugador> listaJugadoresDeUnEquipo(int idEq) {
 
-		Transaction t = session.beginTransaction();
-		Query<Jugador> query = session.createQuery("from Jugador where idEquipo=?1", Jugador.class);
+		entityManager.getTransaction().begin();
+		TypedQuery<Jugador> query = entityManager.createQuery("from Jugador where idEquipo=?1", Jugador.class);
 		query.setParameter(1, idEq);
 		List<Jugador> result = query.getResultList();
 
 		for (Jugador j : (List<Jugador>) result) {
 			System.out.println("Jugador (" + j.getNombre() + ") : " + j.getEdad());
 		}
-		t.commit();
+		entityManager.getTransaction().commit();
 
 		return result;
 	}
 
 	@Override
 	public int inscribirNuevoJugador(Jugador j) {
-		Transaction t = session.beginTransaction();
-
-		session.persist(j);
-		t.commit();
+		entityManager.getTransaction().begin();
+		entityManager.persist(j);
+		entityManager.getTransaction().commit();
 		return 0;
 	}
 
 	@Override
 	public int actualizarEquipo(Equipo e) {
-		Transaction t = session.beginTransaction();
-		session.saveOrUpdate(e);
-		t.commit();
+		entityManager.getTransaction().begin();
+		entityManager.merge(e);
+		entityManager.getTransaction().commit();
 		return 0;
 	}
 
 	@Override
 	// Equipo e = null para quitarlo de un equipo
 	public int actualizarJugador(Jugador j) {
-		Transaction t = session.beginTransaction();
-		session.saveOrUpdate(j);
-		t.commit();
+		entityManager.getTransaction().begin();
+		entityManager.merge(j);
+		entityManager.getTransaction().commit();
 		return 0;
 	}
 
 	@Override
 	public int borrarJugador(Jugador j) {
-		Transaction t = session.beginTransaction();
-		session.delete(j);
-		t.commit();
+		entityManager.getTransaction().begin();
+		entityManager.remove(j);
+		entityManager.getTransaction().commit();
 		return 0;
 	}
 }

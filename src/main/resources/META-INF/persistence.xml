@@ -1,0 +1,16 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
+<persistence-unit name="iis.uma.es.equipos_jugadores">
+    <description>Java Swing Hibernate Demo</description>
+    <class>iis.uma.es.Equipo</class>
+    <class>iis.uma.es.Jugador</class>
+   <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
+        <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/pruebaLigadb"/>
+        <property name="javax.persistence.jdbc.user" value="usuarioPrueba"/>
+        <property name="javax.persistence.jdbc.password" value="pruebausuario"/>
+    </properties>
+</persistence-unit>
+</persistence>
