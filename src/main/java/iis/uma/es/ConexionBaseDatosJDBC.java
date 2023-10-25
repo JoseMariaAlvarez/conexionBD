@@ -173,4 +173,10 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 		return res;
 	}
 
+	@Override
+	public int actualizarEquipo(Equipo e) {
+		// Este método no es necesario en este ejemplo cuando se usa JDBC
+		return 0;
+	}
+
 }
