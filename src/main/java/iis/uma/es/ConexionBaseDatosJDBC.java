@@ -29,6 +29,16 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 		}
 		return instanciaInterfaz;
 	}
+	
+	@Override
+	protected void shutdown() {
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public List<Equipo> listaEquipos() {
 		ArrayList<Equipo> lEquipos = new ArrayList<>();
@@ -142,7 +152,7 @@ public class ConexionBaseDatosJDBC extends ConexionConBasedeDatos {
 		String updateBody = null;
 		int res = 0;
 		try {
-			updateBody = "UPDATE " + TABLE_JUGADOR + " SET idEquipo = null WHERE (identificador = ?)";
+			updateBody = "UPDATE " + TABLE_JUGADOR + " SET idEquipo = ? WHERE (identificador = ?)";
 			preparedStatement = conn.prepareStatement(updateBody);
 			if (j.getIdEquipo() == null) {
 				preparedStatement.setNull(1, java.sql.Types.INTEGER);

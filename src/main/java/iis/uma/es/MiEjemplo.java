@@ -1,5 +1,7 @@
 package iis.uma.es;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -11,8 +13,7 @@ public class MiEjemplo {
 
 		ConexionConBasedeDatos accesoBD;
 
-		//		accesoBD = ConexionBaseDatosJDBC.getInstance();
-		accesoBD = ConexionBaseDatosHibernate.getInstance();
+		accesoBD = ConexionBaseDatosJDBC.getInstance();
 		List<Equipo> listEquipos = accesoBD.listaEquipos();
 		List<Jugador> listJugadores = accesoBD.listaJugadores();
 		ListIterator<Jugador> it = listJugadores.listIterator();
@@ -29,7 +30,13 @@ public class MiEjemplo {
 		}
 		// Create and set up the window.
 		JFrame frame = new JFrame("HelloWorldJBDCHibernate");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				shuttingDown();
+			}
+			
+		});
 
 		InterfazPanelContenido ipc = new InterfazPanelContenido(accesoBD, listEquipos, listJugadores); 
 		frame.getContentPane().add(ipc);
@@ -38,6 +45,14 @@ public class MiEjemplo {
 		frame.pack();
 		frame.setVisible(true);
 		
+	}
+
+	protected static void shuttingDown() {
+		ConexionConBasedeDatos accesoBD;
+
+		accesoBD = ConexionBaseDatosJDBC.getInstance();
+		accesoBD.shutdown();
+		System.exit(0);
 	}
 
 	public static void main(String[] args) {
