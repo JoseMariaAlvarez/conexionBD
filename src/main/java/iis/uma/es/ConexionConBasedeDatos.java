@@ -64,4 +64,8 @@ public abstract class ConexionConBasedeDatos {
 		public abstract int actualizarJugador(Jugador j);
 		public abstract int borrarJugador(Jugador j);
 
+		public abstract int actualizarEquipo(Equipo e);
+
+		public abstract void shutdown();
+
 	}
